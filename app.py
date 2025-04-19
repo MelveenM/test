@@ -10,6 +10,7 @@ commentaires = []
 
 def charger_commentaires():
     if not os.path.exists(ODS_PATH):
+        print("Le fichier ODS n'existe pas, aucun commentaire chargé.")
         return
 
     doc = load(ODS_PATH)
@@ -32,6 +33,7 @@ def charger_commentaires():
             if pseudo and commentaire:
                 commentaires.append((pseudo, commentaire))
 
+    print(f"Commentaires chargés : {commentaires}")
 
 def enregistrer_ods():
     doc = OpenDocumentSpreadsheet()
@@ -48,6 +50,7 @@ def enregistrer_ods():
         table.addElement(row)
 
     doc.save(ODS_PATH)
+    print(f"Commentaires enregistrés dans {ODS_PATH}")
 
 @app.route("/", methods=["GET"])
 def index():
@@ -61,7 +64,6 @@ def comment():
     enregistrer_ods()
     return redirect("/")
 
-# 👇 Place ce bloc tout à la fin
 if __name__ == "__main__":
     charger_commentaires()
     port = int(os.environ.get("PORT", 5000))
