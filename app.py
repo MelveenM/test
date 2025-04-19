@@ -4,6 +4,10 @@ from odf.table import TableRow, TableCell
 from odf.text import P
 import os
 
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port, debug=True)
+
+
 app = Flask(__name__)
 ODS_PATH = "comm.ods"
 commentaires = []
