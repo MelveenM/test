@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commentaires</title>
+</head>
+<body>
+    <h1>Laisse un commentaire</h1>
+    <form action="/comment" method="POST">
+        <label for="pseudo">Pseudo :</label>
+        <input type="text" id="pseudo" name="pseudo" required><br><br>
+        <label for="commentaire">Commentaire :</label><br>
+        <textarea id="commentaire" name="commentaire" rows="5" cols="30" required></textarea><br><br>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <h2>Commentaires existants :</h2>
+    <ul>
+        {% for pseudo, commentaire in commentaires %}
+            <li><strong>{{ pseudo }}</strong> : {{ commentaire }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
